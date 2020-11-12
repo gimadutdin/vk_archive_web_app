@@ -1,0 +1,18 @@
+DELETE FROM PHOTOS;
+DELETE FROM ALBUMS;
+DELETE FROM USER_ALBUMS;
+DELETE FROM USERS_FRIENDS;
+DELETE FROM USERS;
+
+INSERT INTO USERS (USER_ID, FIO, CITY, BIRTHDAY, STUDY_PLACE)
+ VALUES ('sdfsd', 'Эмиль', 'Казань', '1999-02-16', 'КФУ'),
+     ('g3t4', 'Рустем', 'Казань', '1999-10-13', 'КФУ'),
+     ('FSDF', 'Евгений Петров', NULL , '1976-04-03', NULL),
+     ('aa1', 'Сергей', 'Москва', '2005-05-20', NULL),
+     ('113fs', 'Марина Волкова', NULL, NULL, NULL);
+     
+INSERT INTO USERS_FRIENDS (ID, USER_ID, FRIEND_ID)
+ VALUES (1, 'g3t4', 'FSDF');
+     
+SELECT * FROM USERS;
+SELECT* FROM USERS_FRIENDS;
