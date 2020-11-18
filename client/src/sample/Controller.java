@@ -7,6 +7,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
+import java.net.*;
+import java.io.*;
+
+import java.awt.event.ActionEvent;
+
 public class Controller {
 
     @FXML
@@ -48,6 +53,15 @@ public class Controller {
     private TableColumn<?, ?> column_number;
 
 
-
+    public void onSearchClick(javafx.event.ActionEvent actionEvent) throws IOException{
+        URL oracle = new URL("https://www.leotag.com/");
+        URLConnection yc = oracle.openConnection();
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                yc.getInputStream()));
+        String inputLine;
+        while ((inputLine = in.readLine()) != null)
+            System.out.println(inputLine);
+        in.close();
+    }
 }
 
