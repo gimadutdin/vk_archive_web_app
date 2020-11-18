@@ -1,10 +1,11 @@
 package com.company;
 import java.io.*;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
-import javax.swing.text.Document;
+//import javax.swing.text.Document;
 
-import static com.company.VKPageParser.connectDataUser;
+//import static com.company.VKPageParser.connectDataUser;
 
 public class Main {
 
@@ -16,8 +17,8 @@ public class Main {
         StringBuilder sb = new StringBuilder(exampleURL);
         //String connectionUrl = "jdbc:mysql://localhost:3306/test?useSSL=false";
         VKPageParser parser = new VKPageParser(token, versionAPI);
-        Document doc = (Document) parser.connectDataUser(sb);
-        System.out.println(doc);
+        Document doc = parser.connectDataUser(sb);
+        System.out.println(doc.text());
         //(new VKPageParser(token, versionAPI, domain, new DataBase("root", "root", connectionUrl))).getUsers();
     }
 }

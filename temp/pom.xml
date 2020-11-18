@@ -7,7 +7,7 @@
     <repositories>
         <repository>
             <id>Java-VK-API-mvn-repo</id>
-            <url>https://raw.github.com/rgimad/Java-VK-API/mvn-repo/</url>
+            <url>https://raw.github.com/NikitaBurtelov/Java-VK-API/mvn-repo/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
