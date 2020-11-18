@@ -1,12 +1,12 @@
 package com.company;
 
 import java.io.*;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
+//import java.util.List;
+//import java.util.ArrayList;
+//import java.util.Map;
 
-import com.google.gson.Gson;
-import org.jsoup.Jsoup;
+//import com.google.gson.Gson;
+//import org.jsoup.Jsoup;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;
@@ -26,7 +26,7 @@ public class Main {
 
         VKPageParser parser = new VKPageParser(token, versionAPI);
         Document doc = parser.connectDataUser(sb);
-        //System.out.println(doc.text());
+        System.out.println(doc.text());
         String json = doc.text();
 
         JSONObject jsonObject = new JSONObject(json);
@@ -38,5 +38,14 @@ public class Main {
 
         String lastNameText = mainInfo.getString("last_name");
         System.out.println("Last name = " + lastNameText);
+
+        String cityTitleText = mainInfo.getJSONObject("city").getString("title");
+        System.out.println("City = " + cityTitleText);
+
+        String countyTitleText = mainInfo.getJSONObject("country").getString("title");
+        System.out.println("Country = " + countyTitleText);
+
+        String birthDateText = mainInfo.getString("bdate");
+        System.out.println("Birth date = " + birthDateText);
     }
 }

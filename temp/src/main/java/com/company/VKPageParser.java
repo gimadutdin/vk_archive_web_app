@@ -23,10 +23,11 @@ public class VKPageParser {
         //VKPageParser.dataBase = dataBase;
     }
 
-    private static int fiendCountVKGroup(String response) {
+    /*private static int fiendCountVKGroup(String response) {
         return (new JSONObject(response)).getJSONObject("response").getInt("count");
-    }
-/*
+    }*/
+
+    /*
     private static void readUsersGroup(String response, ArrayList<User> arrList) {
         Gson gson = new Gson();
         JSONObject jsonObject = new JSONObject(response);
@@ -39,7 +40,7 @@ public class VKPageParser {
             arrList.add(user);
         }
     }
-*/
+    */
     public static Document connectDataUser(StringBuilder strId) throws IOException {
         String url = "https://api.vk.com/method/users.get";
         HashMap<String, String> map = new HashMap<>();
@@ -47,7 +48,7 @@ public class VKPageParser {
         map.put("name_case", "Nom");
         map.put("v", versionAPI);
         map.put("user_ids", strId.toString());
-        map.put("fields", "city, country, home_town, " +
+        map.put("fields", "city, bdate, country, home_town, " +
                 "photo_max_orig, online, domain, has_mobile," +
                 "contacts, site, education, connections, " +
                 "exports, activities");
@@ -60,6 +61,7 @@ public class VKPageParser {
                 .post();
     }
 
+    /*
     private static Document connectDataGroup(String domain, String offset) throws IOException {
         String url = "https://api.vk.com/method/groups.getMembers";
 
@@ -78,7 +80,8 @@ public class VKPageParser {
                 .data(map)
                 .post();
     }
-/*
+    */
+    /*
     private static void createDataBase(ArrayList<User> arrayList) {
         try {
             dataBase.initDataBase(arrayList);
@@ -116,5 +119,5 @@ public class VKPageParser {
             exception.printStackTrace();
         }
     }
- */
+    */
 }
