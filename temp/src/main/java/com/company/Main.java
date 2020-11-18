@@ -1,10 +1,17 @@
 package com.company;
+
 import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.google.gson.Gson;
 import org.jsoup.Jsoup;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.nodes.Document;
 
 //import javax.swing.text.Document;
-
 //import static com.company.VKPageParser.connectDataUser;
 
 public class Main {
@@ -12,13 +19,24 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String token = "d1adb2dad1adb2dad1adb2da59d1d9d642dd1add1adb2da8e2b9de42ba576790649c910";
         String versionAPI = "5.103"; //current version
-        String domain = "<group id>";
-        String exampleURL = "nikita.vorobev99";
+
+        //String exampleURL = "nikita.vorobev99";
+        String exampleURL = "durov";
         StringBuilder sb = new StringBuilder(exampleURL);
-        //String connectionUrl = "jdbc:mysql://localhost:3306/test?useSSL=false";
+
         VKPageParser parser = new VKPageParser(token, versionAPI);
         Document doc = parser.connectDataUser(sb);
-        System.out.println(doc.text());
-        //(new VKPageParser(token, versionAPI, domain, new DataBase("root", "root", connectionUrl))).getUsers();
+        //System.out.println(doc.text());
+        String json = doc.text();
+
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray respArr = jsonObject.getJSONArray("response");
+        JSONObject mainInfo = respArr.getJSONObject(0);
+
+        String firstNameText = mainInfo.getString("first_name");
+        System.out.println("First Name = " + firstNameText);
+
+        String lastNameText = mainInfo.getString("last_name");
+        System.out.println("Last name = " + lastNameText);
     }
 }
