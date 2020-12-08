@@ -21,7 +21,8 @@ public class Main {
         String versionAPI = "5.103"; //current version
 
         //String exampleURL = "nikita.vorobev99";
-        String exampleURL = "durov";
+        //String exampleURL = "durov";
+        String exampleURL = "id414423500";
         StringBuilder sb = new StringBuilder(exampleURL);
 
         VKPageParser parser = new VKPageParser(token, versionAPI);
@@ -32,20 +33,36 @@ public class Main {
         JSONObject jsonObject = new JSONObject(json);
         JSONArray respArr = jsonObject.getJSONArray("response");
         JSONObject mainInfo = respArr.getJSONObject(0);
+        try {
+            String firstNameText = mainInfo.getString("first_name");
+            System.out.println("First Name = " + firstNameText);
 
-        String firstNameText = mainInfo.getString("first_name");
-        System.out.println("First Name = " + firstNameText);
+            String lastNameText = mainInfo.getString("last_name");
+            System.out.println("Last name = " + lastNameText);
 
-        String lastNameText = mainInfo.getString("last_name");
-        System.out.println("Last name = " + lastNameText);
+            String cityTitleText = mainInfo.getJSONObject("city").getString("title");
+            System.out.println("City = " + cityTitleText);
 
-        String cityTitleText = mainInfo.getJSONObject("city").getString("title");
-        System.out.println("City = " + cityTitleText);
+            String countyTitleText = mainInfo.getJSONObject("country").getString("title");
+            System.out.println("Country = " + countyTitleText);
 
-        String countyTitleText = mainInfo.getJSONObject("country").getString("title");
-        System.out.println("Country = " + countyTitleText);
+            String birthDateText = mainInfo.getString("bdate");
+            System.out.println("Birth date = " + birthDateText);
 
-        String birthDateText = mainInfo.getString("bdate");
-        System.out.println("Birth date = " + birthDateText);
+            String instagramText = mainInfo.getString("instagram");
+            System.out.println("Insta = " + instagramText);
+
+            String universityNameText = mainInfo.getString("university_name");
+            System.out.println("University = " + universityNameText);
+
+            String photoURLText = mainInfo.getString("photo_max_orig");
+            System.out.println("Photo = " + photoURLText);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        //String friendsTitleText = mainInfo.getString("friends");
+        //System.out.println("Friends = " + friendsTitleText);
+        System.out.println(jsonObject);
     }
 }
