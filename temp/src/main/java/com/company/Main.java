@@ -20,8 +20,8 @@ public class Main {
         String token = "d1adb2dad1adb2dad1adb2da59d1d9d642dd1add1adb2da8e2b9de42ba576790649c910";
         String versionAPI = "5.103"; //current version
 
-        //String exampleURL = "nikita.vorobev99";
-        String exampleURL = "durov";
+        String exampleURL = "nikita.vorobev99";
+        //String exampleURL = "durov";
         StringBuilder sb = new StringBuilder(exampleURL);
         VKPageParser parser = new VKPageParser(token, versionAPI);
 
@@ -33,7 +33,7 @@ public class Main {
         JSONArray respArr = jsonObject.getJSONArray("response");
         JSONObject mainInfo = respArr.getJSONObject(0);
 
-        Document docFriends = parser.connectDataFriends(sb, "right");
+        Document docFriends = parser.connectDataFriends(sb);
         System.out.println(docFriends.text());
         String jsonFriends = docFriends.text();
 

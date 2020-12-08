@@ -61,17 +61,14 @@ public class VKPageParser {
                 .post();
     }
 
-     public static Document connectDataFriends(StringBuilder strId, String offset) throws IOException {
+     public static Document connectDataFriends(StringBuilder strId) throws IOException {
         String url = "https://api.vk.com/method/friends.get";
         HashMap<String, String> map = new HashMap<>();
         map.put("access_token", token);
-        map.put("offset", offset); //смещение
-        map.put("name_case", "Nom");
-        map.put("order", "hints");
-        map.put("list_id", "user_id");
-        map.put("count", strId.toString());
-        map.put("v", versionAPI);
-        map.put("fields","nickname, domain, sex, bdate, city, country, photo_max_orig, site, education, contacts");
+         map.put("v", versionAPI);
+         map.put("user_id", "54104100");
+        //map.put("user_ids", strId.toString());
+        map.put("fields","uid");
 
         return Jsoup.connect(url)
                 .userAgent("Chrome/4.0.249.0 Safari/532.5")
