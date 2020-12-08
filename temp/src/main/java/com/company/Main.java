@@ -21,18 +21,26 @@ public class Main {
         String versionAPI = "5.103"; //current version
 
         //String exampleURL = "nikita.vorobev99";
-        //String exampleURL = "durov";
-        String exampleURL = "id414423500";
+        String exampleURL = "durov";
         StringBuilder sb = new StringBuilder(exampleURL);
-
         VKPageParser parser = new VKPageParser(token, versionAPI);
-        Document doc = parser.connectDataUser(sb);
-        System.out.println(doc.text());
-        String json = doc.text();
+
+        Document docUser = parser.connectDataUser(sb);
+        System.out.println(docUser.text());
+        String json = docUser.text();
 
         JSONObject jsonObject = new JSONObject(json);
         JSONArray respArr = jsonObject.getJSONArray("response");
         JSONObject mainInfo = respArr.getJSONObject(0);
+
+        Document docFriends = parser.connectDataFriends(sb, "right");
+        System.out.println(docFriends.text());
+        String jsonFriends = docFriends.text();
+
+        JSONObject jsonObjectFriends = new JSONObject(jsonFriends);
+        JSONArray respArr2 = jsonObject.getJSONArray("response");
+        JSONObject mainInfoOfFriends = respArr.getJSONObject(0);
+        System.out.println();
         try {
             String firstNameText = mainInfo.getString("first_name");
             System.out.println("First Name = " + firstNameText);
@@ -63,6 +71,5 @@ public class Main {
         }
         //String friendsTitleText = mainInfo.getString("friends");
         //System.out.println("Friends = " + friendsTitleText);
-        System.out.println(jsonObject);
     }
 }

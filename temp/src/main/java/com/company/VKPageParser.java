@@ -61,17 +61,17 @@ public class VKPageParser {
                 .post();
     }
 
-    /*
-    private static Document connectDataGroup(String domain, String offset) throws IOException {
-        String url = "https://api.vk.com/method/groups.getMembers";
-
+     public static Document connectDataFriends(StringBuilder strId, String offset) throws IOException {
+        String url = "https://api.vk.com/method/friends.get";
         HashMap<String, String> map = new HashMap<>();
         map.put("access_token", token);
         map.put("offset", offset); //смещение
-        map.put("group_id", domain);
-        map.put("count", "1000");
+        map.put("name_case", "Nom");
+        map.put("order", "hints");
+        map.put("list_id", "user_id");
+        map.put("count", strId.toString());
         map.put("v", versionAPI);
-        map.put("fields","sex, bdate, city, country, photo_max_orig, site, education, contacts");
+        map.put("fields","nickname, domain, sex, bdate, city, country, photo_max_orig, site, education, contacts");
 
         return Jsoup.connect(url)
                 .userAgent("Chrome/4.0.249.0 Safari/532.5")
@@ -80,7 +80,7 @@ public class VKPageParser {
                 .data(map)
                 .post();
     }
-    */
+
     /*
     private static void createDataBase(ArrayList<User> arrayList) {
         try {
