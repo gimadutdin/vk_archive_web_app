@@ -31,15 +31,19 @@ public class Main {
 
         JSONObject jsonObject = new JSONObject(json);
         JSONArray respArr = jsonObject.getJSONArray("response");
+        System.out.println("respArr = " + respArr);
         JSONObject mainInfo = respArr.getJSONObject(0);
+        System.out.println("mainInfo = " + mainInfo);
 
         Document docFriends = parser.connectDataFriends(sb);
         System.out.println(docFriends.text());
         String jsonFriends = docFriends.text();
 
         JSONObject jsonObjectFriends = new JSONObject(jsonFriends);
-        JSONArray respArr2 = jsonObject.getJSONArray("response");
-        JSONObject mainInfoOfFriends = respArr.getJSONObject(0);
+        JSONObject jsonObjFriends2 = jsonObjectFriends.getJSONObject("response");
+        System.out.println("jsonObjFriends2 = " + jsonObjFriends2);
+        JSONArray respArrFriends = jsonObjFriends2.getJSONArray("items");
+        System.out.println("respArrFriends = " + respArrFriends);
         System.out.println();
         try {
             String firstNameText = mainInfo.getString("first_name");
@@ -57,15 +61,21 @@ public class Main {
             String birthDateText = mainInfo.getString("bdate");
             System.out.println("Birth date = " + birthDateText);
 
-            String instagramText = mainInfo.getString("instagram");
-            System.out.println("Insta = " + instagramText);
+            //String instagramText = mainInfo.getString("instagram");
+            //System.out.println("Insta = " + instagramText);
 
-            String universityNameText = mainInfo.getString("university_name");
-            System.out.println("University = " + universityNameText);
+            //String universityNameText = mainInfo.getString("university_name");
+            //System.out.println("University = " + universityNameText);
 
             String photoURLText = mainInfo.getString("photo_max_orig");
             System.out.println("Photo = " + photoURLText);
 
+            for(int i = 0; i < jsonObjFriends2.getInt("count"); i++){
+                JSONObject mainInfoFriends = respArrFriends.getJSONObject(i);
+                String friendsFirstNames = mainInfoFriends.getString("first_name");
+                String friendsLastNames = mainInfoFriends.getString("last_name");
+                System.out.println(i + ") First_name = " + friendsFirstNames + ", Lat_name = " + friendsLastNames + ';');
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
