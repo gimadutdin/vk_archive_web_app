@@ -65,8 +65,8 @@ public class VKPageParser {
         String url = "https://api.vk.com/method/friends.get";
         HashMap<String, String> map = new HashMap<>();
         map.put("access_token", token);
-         map.put("v", versionAPI);
-         map.put("user_id", "54104100");
+        map.put("v", versionAPI);
+        map.put("user_id", "54104100");
         //map.put("user_ids", strId.toString());
         map.put("fields","uid");
 
@@ -78,6 +78,24 @@ public class VKPageParser {
                 .post();
     }
 
+    public static Document connectDataPhotos(StringBuilder strId) throws IOException{
+        String url = "https://api.vk.com/method/photos.get";
+        HashMap<String, String> map = new HashMap<>();
+        map.put("access_token", token);
+        map.put("v", versionAPI);
+        map.put("user_id", "54104100");
+        map.put("album_id", "profile");
+        map.put("photo_sizes", "0");
+        map.put("rev", "0");
+        //map.put("user_ids", strId.toString());
+
+        return Jsoup.connect(url)
+                .userAgent("Chrome/4.0.249.0 Safari/532.5")
+                .referrer("http://www.google.com")
+                .ignoreContentType(true)
+                .data(map)
+                .post();
+    }
     /*
     private static void createDataBase(ArrayList<User> arrayList) {
         try {

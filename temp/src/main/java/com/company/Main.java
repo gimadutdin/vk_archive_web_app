@@ -7,6 +7,7 @@ import java.io.*;
 
 //import com.google.gson.Gson;
 //import org.jsoup.Jsoup;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;
@@ -33,7 +34,7 @@ public class Main {
         JSONArray respArr = jsonObject.getJSONArray("response");
         System.out.println("respArr = " + respArr);
         JSONObject mainInfo = respArr.getJSONObject(0);
-        System.out.println("mainInfo = " + mainInfo);
+        System.out.println("mainInfo = " + mainInfo + '\n');
 
         Document docFriends = parser.connectDataFriends(sb);
         System.out.println(docFriends.text());
@@ -45,6 +46,22 @@ public class Main {
         JSONArray respArrFriends = jsonObjFriends2.getJSONArray("items");
         System.out.println("respArrFriends = " + respArrFriends);
         System.out.println();
+
+        Document docPhotos = parser.connectDataPhotos(sb);
+        System.out.println(docPhotos.text());
+        String jsonPhotos = docPhotos.text();
+
+        JSONObject jsonObjectPhotos = new JSONObject(jsonPhotos);
+        JSONObject jsonObjPhotos2 = jsonObjectPhotos.getJSONObject("response");
+        System.out.println("jsonObjPhotos2 = " + jsonObjPhotos2);
+        JSONArray respArrPhotos = jsonObjPhotos2.getJSONArray("items");
+        System.out.println("respArrPhotos = " + respArrPhotos);
+        //JSONObject temp = respArrPhotos.getJSONObject(0);
+        //System.out.println("temp = " + temp);
+        //JSONArray respArrPhotos2 = temp.getJSONArray("sizes");
+        //System.out.println("respArrPhotos2 = " + respArrPhotos2);
+        System.out.println();
+
         try {
             String firstNameText = mainInfo.getString("first_name");
             System.out.println("First Name = " + firstNameText);
@@ -70,11 +87,23 @@ public class Main {
             String photoURLText = mainInfo.getString("photo_max_orig");
             System.out.println("Photo = " + photoURLText);
 
-            for(int i = 0; i < jsonObjFriends2.getInt("count"); i++){
+            for (int i = 0; i < jsonObjFriends2.getInt("count"); i++) {
                 JSONObject mainInfoFriends = respArrFriends.getJSONObject(i);
                 String friendsFirstNames = mainInfoFriends.getString("first_name");
                 String friendsLastNames = mainInfoFriends.getString("last_name");
                 System.out.println(i + ") First_name = " + friendsFirstNames + ", Lat_name = " + friendsLastNames + ';');
+            }
+            for (int i = 0; i < jsonObjPhotos2.getInt("count"); i++) {
+                JSONObject temp = respArrPhotos.getJSONObject(i);
+                //System.out.println("temp = " + temp);
+                JSONArray respArrPhotos2 = temp.getJSONArray("sizes");
+                //System.out.println("respArrPhotos2 = " + respArrPhotos2);
+                for (int j = 0; j < jsonObjPhotos2.getInt("count"); j++) {
+                    JSONObject mainInfoPhotos = respArrPhotos2.getJSONObject(j);
+                    //System.out.println(mainInfoPhotos);
+                    String linkPhotos = mainInfoPhotos.getString("url");
+                    System.out.println(i + ") URL link = " + linkPhotos + ";");
+                }
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
