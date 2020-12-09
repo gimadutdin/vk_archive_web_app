@@ -1,16 +1,20 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
-import java.net.*;
-import java.io.*;
-
-import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 public class Controller {
 
@@ -41,27 +45,40 @@ public class Controller {
     @FXML
     private TextField search_row;
 
+    @FXML
+    void friend_button(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("friendss.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void photo_button(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("zxc.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    }
+
+
+
+
+
+
 
     ////////////////////////////////////////
-    @FXML
-    private TableView<?> friend_table;
 
-    @FXML
-    private TableColumn<?, ?> column_fio;
-
-    @FXML
-    private TableColumn<?, ?> column_number;
-
-
-    public void onSearchClick(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL oracle = new URL("https://www.leotag.com/");
-        URLConnection yc = oracle.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                yc.getInputStream()));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null)
-            System.out.println(inputLine);
-        in.close();
-    }
-}
 
