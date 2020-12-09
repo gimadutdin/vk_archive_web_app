@@ -1,5 +1,7 @@
 package com.project.server.controller1;
 
+import com.project.server.MainDatabaseTool;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,8 @@ public class MainController {
     // localhost:8080/
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getIndexHandler() {
-        return "vk archive server";
+        MainDatabaseTool mdt = new MainDatabaseTool();
+        return "vk archive server\n" + mdt.selectAll();
     }
 
     // localhost:8080/
