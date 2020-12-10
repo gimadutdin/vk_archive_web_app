@@ -1,19 +1,9 @@
 package com.company;
 
 import java.io.*;
-//import java.util.List;
-//import java.util.ArrayList;
-//import java.util.Map;
-
-//import com.google.gson.Gson;
-//import org.jsoup.Jsoup;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.nodes.Document;
-
-//import javax.swing.text.Document;
-//import static com.company.VKPageParser.connectDataUser;
 
 public class Main {
 

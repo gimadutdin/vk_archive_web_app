@@ -13,34 +13,13 @@ public class VKPageParser {
     private static String token;
     private static String versionAPI;
     private static String domain;
-    //private static DataBase dataBase;
-    private static int countVKGroup;
 
-    public VKPageParser(String token, String versionAPI) { //, String domain, DataBase dataBase) {
+
+    public VKPageParser(String token, String versionAPI) {
         VKPageParser.token = token;
         VKPageParser.versionAPI = versionAPI;
-        //VKPageParser.domain = domain;
-        //VKPageParser.dataBase = dataBase;
     }
 
-    /*private static int fiendCountVKGroup(String response) {
-        return (new JSONObject(response)).getJSONObject("response").getInt("count");
-    }*/
-
-    /*
-    private static void readUsersGroup(String response, ArrayList<User> arrList) {
-        Gson gson = new Gson();
-        JSONObject jsonObject = new JSONObject(response);
-        JSONObject responseObject = jsonObject.getJSONObject("response");
-        JSONArray array = responseObject.getJSONArray("items");
-
-        for (int i = 0; i < array.length(); i++) {
-            JSONObject object = array.getJSONObject(i);
-            User user = gson.fromJson(object.toString(), User.class);
-            arrList.add(user);
-        }
-    }
-    */
     public static Document connectDataUser(StringBuilder strId) throws IOException {
         String url = "https://api.vk.com/method/users.get";
         HashMap<String, String> map = new HashMap<>();
@@ -96,43 +75,4 @@ public class VKPageParser {
                 .data(map)
                 .post();
     }
-    /*
-    private static void createDataBase(ArrayList<User> arrayList) {
-        try {
-            dataBase.initDataBase(arrayList);
-        }
-        catch (SQLException | ClassNotFoundException exception) {
-            exception.printStackTrace();
-        }
-    }
-
-    public void getUsers() {
-        try {
-            ArrayList<User> arrayList = new ArrayList<>();
-            StringBuilder strId;
-            Document doc;
-            int sizeArrList;
-
-            for (int offsetNow = 0; offsetNow <= countVKGroup;) {
-                doc = connectDataGroup(domain, String.valueOf(offsetNow));
-                System.out.println(doc.text());
-                countVKGroup = fiendCountVKGroup(doc.text());
-                readUsersGroup(doc.text(), arrayList);
-
-                sizeArrList = arrayList.size();
-
-                if (sizeArrList == 0)
-                    break;
-
-                createDataBase(arrayList);
-                offsetNow += sizeArrList;
-                arrayList.clear();
-                //System.out.println("Осталось запросов: ");
-            }
-        }
-        catch (IOException exception) {
-            exception.printStackTrace();
-        }
-    }
-    */
 }

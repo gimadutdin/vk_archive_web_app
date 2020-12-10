@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -53,6 +55,13 @@ public class Controller {
                 .data(map)
                 .get();
         System.out.println(docUserInfo.text());
+
+        String json = docUserInfo.text();
+        JSONObject jsonObject = new JSONObject(json);
+        FIO.setText(jsonObject.getString("fio"));
+        city.setText(jsonObject.getString("city"));
+        date.setText(jsonObject.getString("birthday"));
+        study.setText(jsonObject.getString("study_place"));
     }
 
     @FXML
@@ -63,7 +72,7 @@ public class Controller {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -76,21 +85,14 @@ public class Controller {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.show();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+}
 
 
-    }
-
-
-
-
-
-
-
-    ////////////////////////////////////////
+////////////////////////////////////////
 
 
