@@ -7,7 +7,7 @@
     <repositories>
         <repository>
             <id>Java-VK-API-mvn-repo</id>
-            <url>https://raw.github.com/NikitaBurtelov/Java-VK-API/mvn-repo/</url>
+            <url>https://github.com/rgimad/vk_archive_web_app/tree/main/temp/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -15,8 +15,8 @@
         </repository>
     </repositories>
 
-    <groupId>com.Java_vk_api_project</groupId>
-    <artifactId>Java_vk_api_project.dataUsers</artifactId>
+    <groupId>com.vk_archive_web_app</groupId>
+    <artifactId>vk_archive_web_app.dataUser</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -65,8 +65,8 @@
                     <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
                     <branch>refs/heads/mvn-repo</branch>
                     <includes><include>**/*</include></includes>
-                    <repositoryName>Java-VK-API</repositoryName>
-                    <repositoryOwner>NikitaBurtelov</repositoryOwner>
+                    <repositoryName>vk_archive_web_app</repositoryName>
+                    <repositoryOwner>rgimad</repositoryOwner>
                 </configuration>
                 <executions>
                     <execution>
