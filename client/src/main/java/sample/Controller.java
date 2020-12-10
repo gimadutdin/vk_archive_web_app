@@ -14,6 +14,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.util.HashMap;
 import java.io.IOException;
 
 public class Controller {
@@ -44,6 +50,19 @@ public class Controller {
 
     @FXML
     private TextField search_row;
+
+    public void onSearchClick(javafx.event.ActionEvent actionEvent) throws IOException {
+        String urlUserInfo = String.format("http://localhost:8080/user-info/%s", search_row.getText());
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        Document docUserInfo = Jsoup.connect(urlUserInfo)
+                .userAgent("Chrome/4.0.249.0 Safari/532.5")
+                .referrer("http://www.google.com")
+                .ignoreContentType(true)
+                .data(map)
+                .get();
+        System.out.println(docUserInfo.text());
+    }
 
     @FXML
     void friend_button(ActionEvent event) throws IOException {
